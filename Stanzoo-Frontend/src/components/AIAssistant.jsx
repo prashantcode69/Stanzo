@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiSend, FiX } from "react-icons/fi";
+import API_BASE from "../api";
 
 const bubbleBase = {
   borderRadius: 16,
@@ -34,7 +35,7 @@ const AIAssistant = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:4000/api/ai", {
+      const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages }),

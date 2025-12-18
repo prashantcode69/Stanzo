@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiWifi, FiCoffee, FiWind } from "react-icons/fi";
+import API_BASE from "../api"; 
 
 const RoomGrid = ({ filteredRoom }) => {
   const [rooms, setRooms] = useState([]);
@@ -8,7 +9,7 @@ const RoomGrid = ({ filteredRoom }) => {
   useEffect(() => {
     const loadRooms = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/rooms");
+        const res = await fetch(`${API_BASE}/api/rooms`);
         const data = await res.json();
         console.log("All rooms loaded:", data); // DEBUG
         setRooms(data); // SET ALL ROOMS - NO LIMIT
