@@ -35,7 +35,7 @@ const AIAssistant = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/chat`, {
+      const res = await fetch("https://https://stanzo.onrender.com//api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages }),

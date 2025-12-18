@@ -13,7 +13,10 @@ console.log("MONGO_URI =", process.env.MONGO_URI);
 console.log("DEBUG: Gemini API Key loaded:", !!process.env.GEMINI_API_KEY);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://stanzo.vercel.app", // Your Vercel domain
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/ai", aiRoutes);
 
