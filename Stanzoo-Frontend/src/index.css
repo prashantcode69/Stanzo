@@ -75,9 +75,9 @@ h3 {
 @media (max-width: 640px) {
   /* Adjust layout for mobile */
   .app-main {
-    marginTop: 12px; /* Reduce margin for mobile */
-    paddingLeft: 12px;
-    paddingRight: 12px;
+    margin-top: 12px; /* Reduce margin for mobile */
+    padding-left: 12px;
+    padding-right: 12px;
   }
   
   /* Stack items vertically */
@@ -87,7 +87,7 @@ h3 {
   
   /* Adjust grid for mobile */
   .room-grid {
-    gridTemplateColumns: 1fr;
+    grid-template-columns: 1fr;
   }
 }
 
