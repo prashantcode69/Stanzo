@@ -71,3 +71,30 @@ h3 {
     padding: 80px 16px 32px;
   }
 }
+/* Mobile First Approach */
+@media (max-width: 640px) {
+  /* Adjust layout for mobile */
+  .app-main {
+    marginTop: 12px; /* Reduce margin for mobile */
+    paddingLeft: 12px;
+    paddingRight: 12px;
+  }
+  
+  /* Stack items vertically */
+  .room-carousel {
+    flex-direction: column;
+  }
+  
+  /* Adjust grid for mobile */
+  .room-grid {
+    gridTemplateColumns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tablet adjustments */
+}
+
+@media (min-width: 769px) {
+  /* Desktop adjustments */
+}

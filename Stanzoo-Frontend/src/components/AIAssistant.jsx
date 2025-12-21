@@ -66,53 +66,58 @@ const AIAssistant = () => {
   return (
     <>
       {/* Floating button */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        style={{
-          position: "fixed",
-          right: 20,
-          bottom: 20,
-          zIndex: 50,
-          borderRadius: 999,
-          border: "none",
-          padding: "12px 20px",
-          background: "linear-gradient(135deg, #f97316, #fb923c)",
-          color: "#0b1120",
-          fontSize: 13,
-          fontWeight: 600,
-          cursor: "pointer",
-          boxShadow: "0 20px 40px rgba(15,23,42,0.8)",
-          transition: "all 0.3s",
-        }}
-        onMouseEnter={(e) =>
-          (e.target.style.transform = "scale(1.05)")
-        }
-        onMouseLeave={(e) =>
-          (e.target.style.transform = "scale(1)")
-        }
-      >
-        {open ? "Close" : "Ask Stanzoo AI"}
-      </button>
+      // Around line 33-40, find this section:
+<button
+  onClick={() => setOpen((o) => !o)}
+  style={{
+    position: "fixed",
+    right: window.innerWidth < 640 ? 15 : 20,
+    bottom: window.innerWidth < 640 ? 15 : 20,
+    zIndex: 50,
+    borderRadius: 999,
+    border: "none",
+    padding: window.innerWidth < 640 ? "10px 15px" : "12px 20px",
+    background: "linear-gradient(135deg, #f97316, #fb923c)",
+    color: "#0b1120",
+    fontSize: window.innerWidth < 640 ? 11 : 13,
+    fontWeight: 600,
+    cursor: "pointer",
+    boxShadow: "0 20px 40px rgba(15,23,42,0.8)",
+    transition: "all 0.3s",
+  }}
+  onMouseEnter={(e) =>
+    (e.target.style.transform = "scale(1.05)")
+  }
+  onMouseLeave={(e) =>
+    (e.target.style.transform = "scale(1)")
+  }
+>
+  {open ? "Close" : "Ask Stanzoo AI"}
+</button>
+
 
       {/* Chat window */}
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            right: 20,
-            bottom: 80,
-            width: 340,
-            maxHeight: 500,
-            display: "flex",
-            flexDirection: "column",
-            borderRadius: 20,
-            background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.85))",
-            border: "1px solid rgba(249,115,22,0.4)",
-            boxShadow: "0 20px 60px rgba(15,23,42,0.95)",
-            zIndex: 50,
-            animation: "slideUp 0.3s ease",
-          }}
-        >
+  <div
+    style={{
+      position: "fixed",
+      right: window.innerWidth < 640 ? 10 : 20,
+      bottom: window.innerWidth < 640 ? 70 : 80,
+      width: window.innerWidth < 640 ? "calc(100% - 20px)" : 340,
+      maxHeight: window.innerWidth < 640 ? "60vh" : 500,
+      maxWidth: 340,
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: 20,
+      background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.85))",
+      border: "1px solid rgba(249,115,22,0.4)",
+      boxShadow: "0 20px 60px rgba(15,23,42,0.95)",
+      zIndex: 50,
+      animation: "slideUp 0.3s ease",
+    }}
+  >
+    {/* Rest of the chat content stays the same */}
+
           {/* Header */}
           <div
             style={{
