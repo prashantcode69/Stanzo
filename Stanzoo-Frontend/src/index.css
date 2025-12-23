@@ -71,6 +71,7 @@ h3 {
     padding: 80px 16px 32px;
   }
 }
+<<<<<<< HEAD
 /* Mobile First Approach */
 @media (max-width: 640px) {
   /* Adjust layout for mobile */
@@ -98,3 +99,5 @@ h3 {
 @media (min-width: 769px) {
   /* Desktop adjustments */
 }
+=======
+>>>>>>> parent of d5d14a7 (Fix: Add mobile responsive design)
