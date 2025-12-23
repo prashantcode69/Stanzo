@@ -53,12 +53,13 @@ const Hero = () => {
 
         <div
           style={{
-            marginTop: 18,
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 12,
-            fontSize: 12,
-          }}
+  padding: 24,
+  display: "grid",
+  gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 1fr)",
+  gap: 20,
+  alignItems: "center",
+}}
+
         >
           <span style={{ display: "flex", alignItems: "center", gap: 6, color: "#e5e7eb" }}>
             <FiAward size={16} color="#f97316" />

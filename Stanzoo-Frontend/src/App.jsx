@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiMenu, FiX } from "react-icons/fi";
 import Hero from "./components/Hero";
 import BookingCard from "./components/BookingCard";
 import RoomGrid from "./components/RoomGrid";
@@ -12,7 +12,6 @@ import "./index.css";
 
 const HomePage = () => {
   const [filteredRoom, setFilteredRoom] = useState(null);
-
   return (
     <main className="app-main">
       <Hero />
@@ -33,6 +32,8 @@ const HomePage = () => {
 };
 
 const App = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="app">
       <header
@@ -92,7 +93,6 @@ const App = () => {
                 </span>
               </div>
             </div>
-
             <div>
               <div
                 style={{
@@ -109,7 +109,9 @@ const App = () => {
             </div>
           </div>
 
+          {/* Desktop Navigation - Hidden on mobile */}
           <div
+            className="nav-links-desktop"
             style={{
               display: "flex",
               alignItems: "center",
@@ -150,9 +152,99 @@ const App = () => {
             }}
           >
             <FiPhoneCall size={16} />
-            24/7 Concierge
+            <span className="concierge-text">24/7 Concierge</span>
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "none",
+              color: "#e5e7eb",
+              cursor: "pointer",
+              padding: "8px",
+              borderRadius: "8px",
+            }}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </nav>
+
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="mobile-menu" style={{ display: "none" }}>
+            <Link
+              to="/"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
+            >
+              Rooms
+            </Link>
+            <Link
+              to="/amenities"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
+            >
+              Amenities
+            </Link>
+            <Link
+              to="/about"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
+            >
+              About
+            </Link>
+            <button
+              className="mobile-concierge-btn"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                width: "100%",
+                padding: "12px 14px",
+                marginTop: 8,
+                borderRadius: 8,
+                border: "1px solid rgba(249,115,22,0.45)",
+                background:
+                  "radial-gradient(circle at 0 0, rgba(249,115,22,0.18), transparent 55%)",
+                color: "#fed7aa",
+                fontSize: 13,
+                cursor: "pointer",
+              }}
+            >
+              <FiPhoneCall size={16} />
+              24/7 Concierge
+            </button>
+          </div>
+        )}
       </header>
 
       <Routes>
