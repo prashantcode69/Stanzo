@@ -137,3 +137,437 @@
     margin: 4px !important;
   }
 }
+/* Header Styles */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(to bottom, rgba(2,6,23,0.96), rgba(2,6,23,0.7), transparent);
+  border-bottom: 1px solid rgba(148,163,184,0.35);
+}
+
+.app-nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 18px 20px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: conic-gradient(from 160deg, #f97316, #fb923c, #22d3ee, #4f46e5, #f97316);
+  padding: 2px;
+}
+
+.logo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0, #020617 0, #020617 55%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #f9fafb;
+}
+
+.logo-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f9fafb;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Desktop Navigation */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+}
+
+.nav-link {
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fed7aa;
+}
+
+.concierge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(249,115,22,0.45);
+  background: radial-gradient(circle at 0 0, rgba(249,115,22,0.18), transparent 55%);
+  color: #fed7aa;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.concierge-btn:hover {
+  border-color: rgba(249,115,22,0.8);
+  background: radial-gradient(circle at 0 0, rgba(249,115,22,0.3), transparent 55%);
+}
+
+.concierge-text {
+  display: inline;
+}
+
+/* Mobile Menu Button (Hidden by default) */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Mobile Menu (Hidden by default) */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, rgba(2,6,23,0.98), rgba(2,6,23,0.95));
+  border-bottom: 1px solid rgba(148,163,184,0.35);
+  padding: 16px 20px;
+  gap: 12px;
+  flex-direction: column;
+  z-index: 39;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 12px 0;
+  color: #e5e7eb;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(148,163,184,0.2);
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-link:last-of-type {
+  border-bottom: none;
+}
+
+.mobile-nav-link:hover {
+  color: #fed7aa;
+}
+
+.mobile-concierge-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(249,115,22,0.45);
+  background: radial-gradient(circle at 0 0, rgba(249,115,22,0.18), transparent 55%);
+  color: #fed7aa;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Rooms and Booking Container */
+.rooms-booking-container {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+/* Footer */
+.app-footer {
+  border-top: 1px solid rgba(148,163,184,0.3);
+  padding: 16px 20px 24px;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+
+@media (max-width: 1024px) {
+  .app-nav {
+    padding: 14px 16px;
+  }
+  
+  .nav-links-desktop {
+    gap: 16px;
+    font-size: 12px;
+  }
+  
+  .concierge-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header */
+  .app-nav {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  
+  .logo-badge {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .logo-text {
+    font-size: 18px;
+  }
+  
+  .logo-title {
+    font-size: 16px;
+  }
+  
+  .logo-subtitle {
+    font-size: 11px;
+  }
+  
+  /* Hide desktop navigation */
+  .nav-links-desktop {
+    display: none;
+  }
+  
+  .concierge-text {
+    display: none;
+  }
+  
+  .concierge-btn {
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  /* Show mobile menu button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Mobile menu */
+  .mobile-menu {
+    display: flex;
+  }
+  
+  /* Hero Section */
+  .glass {
+    padding: 16px !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  .glass h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  
+  .glass p {
+    font-size: 13px;
+    max-width: 100%;
+  }
+  
+  .glass img, .glass > div:last-child {
+    height: 180px;
+  }
+  
+  /* Rooms and Booking */
+  .rooms-booking-container {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-top: 16px !important;
+    padding: 0 !important;
+  }
+  
+  /* General */
+  #root {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+  
+  input, select, textarea, button {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /* Header */
+  .app-nav {
+    padding: 10px 12px;
+  }
+  
+  .logo-badge {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .logo-text {
+    font-size: 16px;
+  }
+  
+  .logo-title {
+    font-size: 14px;
+  }
+  
+  .logo-subtitle {
+    font-size: 10px;
+  }
+  
+  /* Hero */
+  .glass {
+    padding: 12px !important;
+    gap: 12px !important;
+  }
+  
+  .glass h1 {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  
+  .glass p {
+    font-size: 12px;
+  }
+  
+  .glass > div:nth-child(1) > div:nth-child(1) {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  
+  .glass > div:last-child {
+    height: 160px;
+  }
+  
+  /* Rooms and Booking */
+  .rooms-booking-container {
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+  
+  /* Forms */
+  input, select, textarea {
+    min-height: 48px;
+    font-size: 16px;
+    padding: 8px !important;
+  }
+  
+  button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+  
+  /* Footer */
+  .app-footer {
+    padding: 12px 16px 20px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-badge {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .logo-text {
+    font-size: 14px;
+  }
+  
+  .logo-title {
+    font-size: 12px;
+  }
+  
+  .logo-subtitle {
+    font-size: 9px;
+  }
+  
+  .glass {
+    padding: 8px !important;
+  }
+  
+  .glass h1 {
+    font-size: 20px;
+  }
+  
+  .glass p {
+    font-size: 11px;
+  }
+  
+  .glass > div:last-child {
+    height: 140px;
+  }
+  
+  button {
+    font-size: 12px;
+    padding: 8px 12px !important;
+  }
+  
+  .rooms-booking-container {
+    gap: 8px !important;
+    margin-top: 8px !important;
+  }
+}

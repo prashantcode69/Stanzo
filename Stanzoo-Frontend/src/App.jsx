@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import Hero from "./components/Hero";
 import BookingCard from "./components/BookingCard";
 import RoomGrid from "./components/RoomGrid";
@@ -12,6 +13,7 @@ import "./index.css";
 
 const HomePage = () => {
   const [filteredRoom, setFilteredRoom] = useState(null);
+const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <main className="app-main">
@@ -28,6 +30,10 @@ const HomePage = () => {
         <RoomGrid filteredRoom={filteredRoom} />
         <BookingCard onSearch={setFilteredRoom} />
       </div>
+      <div className="rooms-booking-container">
+  <RoomGrid filteredRoom={filteredRoom} />
+  <BookingCard onSearch={setFilteredRoom} />
+</div>
     </main>
   );
 };
@@ -46,6 +52,9 @@ const App = () => {
           borderBottom: "1px solid rgba(148,163,184,0.35)",
         }}
       >
+        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+  {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+</button>
         <nav
           style={{
             maxWidth: 1120,
@@ -57,6 +66,13 @@ const App = () => {
             gap: 16,
           }}
         >
+          {mobileMenuOpen && (
+  <div className="mobile-menu">
+    <Link to="/" className="mobile-nav-link">Rooms</Link>
+    <Link to="/amenities" className="mobile-nav-link">Amenities</Link>
+    <Link to="/about" className="mobile-nav-link">About</Link>
+  </div>
+)}
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div
               style={{
