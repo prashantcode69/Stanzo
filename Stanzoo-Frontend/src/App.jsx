@@ -16,7 +16,14 @@ const HomePage = () => {
     <main className="app-main">
       <Hero />
       <RoomCarousel />
-      <div className="rooms-booking-container">
+      <div
+        style={{
+          marginTop: 28,
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1.4fr) minmax(0, 1fr)",
+          gap: 24,
+        }}
+      >
         <RoomGrid filteredRoom={filteredRoom} />
         <BookingCard onSearch={setFilteredRoom} />
       </div>
@@ -27,40 +34,123 @@ const HomePage = () => {
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
   return (
     <div className="app">
-      <header className="app-header">
-        <nav className="app-nav">
-          <div className="nav-logo">
-            <div className="logo-badge">
-              <div className="logo-inner">
-                <span className="logo-text">S</span>
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 40,
+          backdropFilter: "blur(18px)",
+          background:
+            "linear-gradient(to bottom, rgba(2,6,23,0.96), rgba(2,6,23,0.7), transparent)",
+          borderBottom: "1px solid rgba(148,163,184,0.35)",
+        }}
+      >
+        <nav
+          style={{
+            maxWidth: 1120,
+            margin: "0 auto",
+            padding: "18px 20px 14px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "999px",
+                background:
+                  "conic-gradient(from 160deg, #f97316, #fb923c, #22d3ee, #4f46e5, #f97316)",
+                padding: 2,
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "999px",
+                  background:
+                    "radial-gradient(circle at 30% 0, #020617 0, #020617 55%, #020617 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 22,
+                    fontWeight: 800,
+                    letterSpacing: -1,
+                    color: "#f9fafb",
+                  }}
+                >
+                  S
+                </span>
               </div>
             </div>
-            <div className="logo-info">
-              <div className="logo-title">Stanzoo</div>
-              <div className="logo-subtitle">Coastal luxury hotel</div>
+            <div>
+              <div
+                style={{
+                  fontSize: 18,
+                  fontWeight: 600,
+                  letterSpacing: -0.03,
+                }}
+              >
+                Stanzoo
+              </div>
+              <div style={{ fontSize: 12, color: "#9ca3af" }}>
+                Coastal luxury hotel
+              </div>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="nav-links-desktop">
-            <Link to="/" className="nav-link">
+          {/* Desktop Navigation - Hidden on mobile */}
+          <div
+            className="nav-links-desktop"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 20,
+              fontSize: 13,
+            }}
+          >
+            <Link to="/" style={{ color: "#e5e7eb", textDecoration: "none" }}>
               Rooms
             </Link>
-            <Link to="/amenities" className="nav-link">
+            <Link
+              to="/amenities"
+              style={{ color: "#9ca3af", textDecoration: "none" }}
+            >
               Amenities
             </Link>
-            <Link to="/about" className="nav-link">
+            <Link
+              to="/about"
+              style={{ color: "#9ca3af", textDecoration: "none" }}
+            >
               About
             </Link>
           </div>
 
-          <button className="concierge-btn">
+          <button
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 14px",
+              borderRadius: 999,
+              border: "1px solid rgba(249,115,22,0.45)",
+              background:
+                "radial-gradient(circle at 0 0, rgba(249,115,22,0.18), transparent 55%)",
+              color: "#fed7aa",
+              fontSize: 13,
+              cursor: "pointer",
+            }}
+          >
             <FiPhoneCall size={16} />
             <span className="concierge-text">24/7 Concierge</span>
           </button>
@@ -68,7 +158,16 @@ const App = () => {
           {/* Mobile Menu Button */}
           <button
             className="mobile-menu-btn"
-            onClick={toggleMobileMenu}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "none",
+              color: "#e5e7eb",
+              cursor: "pointer",
+              padding: "8px",
+              borderRadius: "8px",
+            }}
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -77,11 +176,19 @@ const App = () => {
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="mobile-menu">
+          <div className="mobile-menu" style={{ display: "none" }}>
             <Link
               to="/"
               className="mobile-nav-link"
               onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
             >
               Rooms
             </Link>
@@ -89,6 +196,14 @@ const App = () => {
               to="/amenities"
               className="mobile-nav-link"
               onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
             >
               Amenities
             </Link>
@@ -96,10 +211,35 @@ const App = () => {
               to="/about"
               className="mobile-nav-link"
               onClick={() => setMobileMenuOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                color: "#e5e7eb",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(148,163,184,0.2)",
+                fontSize: "14px",
+              }}
             >
               About
             </Link>
-            <button className="mobile-concierge-btn">
+            <button
+              className="mobile-concierge-btn"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                width: "100%",
+                padding: "12px 14px",
+                marginTop: 8,
+                borderRadius: 8,
+                border: "1px solid rgba(249,115,22,0.45)",
+                background:
+                  "radial-gradient(circle at 0 0, rgba(249,115,22,0.18), transparent 55%)",
+                color: "#fed7aa",
+                fontSize: 13,
+                cursor: "pointer",
+              }}
+            >
               <FiPhoneCall size={16} />
               24/7 Concierge
             </button>
@@ -115,7 +255,15 @@ const App = () => {
 
       <AIAssistant />
 
-      <footer className="app-footer">
+      <footer
+        style={{
+          borderTop: "1px solid rgba(148,163,184,0.3)",
+          padding: "16px 20px 24px",
+          fontSize: 12,
+          color: "#6b7280",
+          textAlign: "center",
+        }}
+      >
         © {new Date().getFullYear()} Stanzoo. Crafted in React.
       </footer>
     </div>

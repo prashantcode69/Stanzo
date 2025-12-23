@@ -571,3 +571,54 @@
     margin-top: 8px !important;
   }
 }
+/* Mobile Menu Button - shown only on mobile */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links-desktop {
+    display: none !important;
+  }
+
+  .concierge-text {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(2, 6, 23, 0.98),
+      rgba(2, 6, 23, 0.95)
+    );
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    padding: 16px 20px;
+    gap: 12px;
+    flex-direction: column;
+    z-index: 39;
+  }
+}
+
+@media (max-width: 640px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .app-main > div {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
