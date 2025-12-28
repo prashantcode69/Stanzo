@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import Hero from "./components/Hero";
 import BookingCard from "./components/BookingCard";
@@ -7,6 +7,7 @@ import RoomGrid from "./components/RoomGrid";
 import RoomCarousel from "./components/RoomCarousel";
 import AmenitiesPage from "./pages/AmenitiesPage";
 import AboutPage from "./pages/AboutPage";
+import BookingConfirmation from "./components/BookingConfirmation"; // New import
 import AIAssistant from "./components/AIAssistant";
 import "./index.css";
 
@@ -157,6 +158,9 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/amenities" element={<AmenitiesPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/booking-confirm" element={<BookingConfirmation />} /> {/* New route */}
       </Routes>
 
       <AIAssistant />

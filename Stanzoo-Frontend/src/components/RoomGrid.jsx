@@ -1,23 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { FiWifi, FiCoffee, FiWind } from "react-icons/fi";
-import API_BASE from "../api"; 
+import API_BASE from "../api";
 
 const RoomGrid = ({ filteredRoom }) => {
   const [rooms, setRooms] = useState([]);
   const [displayRooms, setDisplayRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadRooms = async () => {
       try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch rooms from API
         const res = await fetch(`${API_BASE}/api/rooms`);
+
+        // ✅ CHECK: Response status BEFORE parsing JSON
+        if (!res.ok) {
+          const text = await res.text();
+          console.error(`HTTP ${res.status}:`, text.slice(0, 200));
+          throw new Error(`HTTP Error ${res.status}`);
+        }
+
+        // ✅ CHECK: Content-Type is JSON
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          const text = await res.text();
+          console.error("Non-JSON response:", text.slice(0, 200));
+          throw new Error("Response is not JSON");
+        }
+
+        // ✅ NOW safely parse JSON
         const data = await res.json();
         console.log("All rooms loaded:", data); // DEBUG
-        setRooms(data); // SET ALL ROOMS - NO LIMIT
-        setDisplayRooms(data); // SHOW ALL INITIALLY
+
+        // Ensure data is an array
+        if (Array.isArray(data)) {
+          setRooms(data);
+          setDisplayRooms(data); // Show all initially
+        } else {
+          console.warn("Expected array, got:", typeof data);
+          setRooms([]);
+          setDisplayRooms([]);
+        }
       } catch (err) {
-        console.error("Error loading rooms", err);
+        console.error("Error loading rooms:", err.message);
+        setError(err.message);
+        setRooms([]);
+        setDisplayRooms([]);
+      } finally {
+        setLoading(false);
       }
     };
+
     loadRooms();
   }, []);
 
@@ -28,10 +65,35 @@ const RoomGrid = ({ filteredRoom }) => {
         (room) => room.name === filteredRoom.roomType
       );
       setDisplayRooms(filtered);
+      console.log("Filtered rooms:", filtered); // DEBUG
     } else {
-      setDisplayRooms(rooms); // SHOW ALL WHEN NO FILTER
+      setDisplayRooms(rooms); // Show all when no filter
     }
   }, [filteredRoom, rooms]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <section id="rooms">
+        <h2 style={{ fontSize: 18 }}>Suites & residences</h2>
+        <div style={{ padding: "20px", color: "#9ca3af", textAlign: "center" }}>
+          Loading rooms...
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <section id="rooms">
+        <h2 style={{ fontSize: 18 }}>Suites & residences</h2>
+        <div style={{ padding: "20px", color: "#ef4444", textAlign: "center" }}>
+          Error: {error}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="rooms">
@@ -62,7 +124,7 @@ const RoomGrid = ({ filteredRoom }) => {
           gap: 14,
         }}
       >
-        {displayRooms.length > 0 ? (
+        {displayRooms && displayRooms.length > 0 ? (
           displayRooms.map((room) => (
             <article
               key={room._id}
@@ -75,6 +137,7 @@ const RoomGrid = ({ filteredRoom }) => {
                 alignItems: "center",
               }}
             >
+              {/* Room image */}
               <div
                 style={{
                   position: "relative",
@@ -121,6 +184,7 @@ const RoomGrid = ({ filteredRoom }) => {
                 </div>
               </div>
 
+              {/* Room info */}
               <div>
                 <div
                   style={{
@@ -136,6 +200,7 @@ const RoomGrid = ({ filteredRoom }) => {
                   </span>
                 </div>
 
+                {/* Amenities icons */}
                 <div
                   style={{
                     display: "flex",
@@ -175,6 +240,7 @@ const RoomGrid = ({ filteredRoom }) => {
                   </span>
                 </div>
 
+                {/* Amenity tags */}
                 <div
                   style={{
                     display: "flex",

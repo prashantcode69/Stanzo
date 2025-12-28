@@ -2,19 +2,71 @@ import React, { useEffect, useState } from "react";
 
 const RoomCarousel = () => {
   const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadRooms = async () => {
       try {
+        setLoading(true);
+        setError(null);
+
         const res = await fetch("http://localhost:4000/api/rooms");
+
+        // Check HTTP status
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`HTTP Error ${res.status}`);
+        }
+
+        // Check content type
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          throw new Error("Response is not JSON");
+        }
+
+        // Parse JSON
         const data = await res.json();
-        setRooms(data.slice(0, 3)); // ONLY SHOW FIRST 3
+        
+        // Only show first 3 rooms, ensure it's an array
+        if (Array.isArray(data)) {
+          setRooms(data.slice(0, 3));
+        } else {
+          console.warn("Expected array, got:", typeof data);
+          setRooms([]);
+        }
       } catch (err) {
-        console.error("Error loading rooms", err);
+        console.error("Error loading rooms:", err.message);
+        setError(err.message);
+        setRooms([]);
+      } finally {
+        setLoading(false);
       }
     };
+
     loadRooms();
   }, []);
+
+  // Show loading state
+  if (loading) {
+    return <section style={{ marginBottom: 32 }}>Loading rooms...</section>;
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section style={{ marginBottom: 32, color: "#ef4444" }}>
+        Error: {error}
+      </section>
+    );
+  }
+
+  // Show empty state
+  if (rooms.length === 0) {
+    return (
+      <section style={{ marginBottom: 32 }}>No rooms available</section>
+    );
+  }
 
   return (
     <section
