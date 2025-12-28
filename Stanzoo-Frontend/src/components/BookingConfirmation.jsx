@@ -21,7 +21,39 @@ const BookingConfirmation = () => {
     console.log('Booking confirmed:', { ...bookingData, ...formData });
     setIsSubmitting(false);
     navigate('/');
+     const fullBooking = {
+    ...bookingData,
+    ...formData,
+    status: 'confirmed',
+    bookingId: 'BK' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+    bookingDate: new Date().toLocaleDateString(),
+    total: (bookingData.price || 320) * (bookingData.nights || 2)
   };
+  try {
+    // Call YOUR BACKEND
+    const response = await fetch('http://localhost:3001/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fullBooking)
+    });
+    
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error);
+    
+    // Also save locally
+    const existingBookings = JSON.parse(localStorage.getItem('stanzooBookings') || '[]');
+    existingBookings.push(fullBooking);
+    localStorage.setItem('stanzooBookings', JSON.stringify(existingBookings));
+    
+    setIsSubmitting(false);
+    setShowSuccess(true);
+    setTimeout(() => navigate('/bookings'), 2000);
+  } catch (error) {
+    console.error('Booking error:', error);
+    alert('Booking failed: ' + error.message);
+    setIsSubmitting(false);
+  }
+};
 
   const nights = bookingData.nights || 2;
   const totalPrice = (bookingData.price || 320) * nights;

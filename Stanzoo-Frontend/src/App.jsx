@@ -135,7 +135,12 @@ const App = () => {
             >
               About
             </Link>
-                        <Link\n              to=\"/bookings\"\n              style={{ color: \"#9ca3af\", textDecoration: \"none\" }}\n            >\n              Bookings\n            </Link>
+            <Link
+              to="/bookings"
+              style={{ color: "#9ca3af", textDecoration: "none" }}
+            >
+              Bookings
+            </Link>
           </div>
 
           <button
