@@ -7,6 +7,7 @@ import RoomGrid from "./components/RoomGrid";
 import RoomCarousel from "./components/RoomCarousel";
 import AmenitiesPage from "./pages/AmenitiesPage";
 import AboutPage from "./pages/AboutPage";
+import BookingsPage from "./pages/BookingsPage";
 import BookingConfirmation from "./components/BookingConfirmation";
 import AIAssistant from "./components/AIAssistant";
 import "./index.css";
@@ -134,6 +135,7 @@ const App = () => {
             >
               About
             </Link>
+                        <Link\n              to=\"/bookings\"\n              style={{ color: \"#9ca3af\", textDecoration: \"none\" }}\n            >\n              Bookings\n            </Link>
           </div>
 
           <button
@@ -249,6 +251,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/amenities" element={<AmenitiesPage />} />
         <Route path="/about" element={<AboutPage />} />
+                <Route path="/bookings" element={<BookingsPage />} />
         <Route path="/booking-confirm" element={<BookingConfirmation />} />
       </Routes>
 
