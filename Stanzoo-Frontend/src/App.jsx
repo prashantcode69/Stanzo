@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiMenu, FiX } from "react-icons/fi";
 import Hero from "./components/Hero";
 import BookingCard from "./components/BookingCard";
 import RoomGrid from "./components/RoomGrid";
 import RoomCarousel from "./components/RoomCarousel";
 import AmenitiesPage from "./pages/AmenitiesPage";
 import AboutPage from "./pages/AboutPage";
-import BookingConfirmation from "./components/BookingConfirmation"; // New import
+import BookingConfirmation from "./components/BookingConfirmation";
 import AIAssistant from "./components/AIAssistant";
 import "./index.css";
 
@@ -110,7 +110,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation - Hidden on mobile */}
           <div
             className="nav-links-desktop"
             style={{
@@ -156,7 +155,6 @@ const App = () => {
             <span className="concierge-text">24/7 Concierge</span>
           </button>
 
-          {/* Mobile Menu Button */}
           <button
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -175,7 +173,6 @@ const App = () => {
           </button>
         </nav>
 
-        {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
           <div className="mobile-menu" style={{ display: "none" }}>
             <Link
@@ -252,9 +249,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/amenities" element={<AmenitiesPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/booking-confirm" element={<BookingConfirmation />} /> {/* New route */}
+        <Route path="/booking-confirm" element={<BookingConfirmation />} />
       </Routes>
 
       <AIAssistant />
